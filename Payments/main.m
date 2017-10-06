@@ -13,6 +13,7 @@
 #import "AmazonPaymentService.h"
 #import "StripePaymentService.h"
 #import "PaypalPaymentService.h"
+#import "ApplePaymentService.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -24,7 +25,7 @@ int main(int argc, const char * argv[]) {
         NSLog(@"Thank you for shopping at LiteShackLabs.ca");
         NSLog(@"Your total today is $%.2ld", (long)price);
         NSLog(@"Please select your payment method:");
-        NSLog(@"1: Paypal, 2: Stripe, 3: Amazon");
+        NSLog(@"1: Paypal, 2: Stripe, 3: Amazon, 4: ApplePay");
         NSString *userInput = [myInputCollector inputForPrompt:@">"];
         NSLog(@"%@",userInput);
         id<PaymentDelegate> myPaymentDelegate;
@@ -41,6 +42,10 @@ int main(int argc, const char * argv[]) {
                 
             case 3:{
                 myPaymentDelegate = [[AmazonPaymentService alloc] init];
+                break;
+            }
+            case 4:{
+                myPaymentDelegate = [[ApplePaymentService alloc] init];
                 break;
             }
             default:

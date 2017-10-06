@@ -15,6 +15,7 @@
 }
 
 -(BOOL)canProcessPayment{
+    NSLog(@"Amazon - Processing payment...");
     return arc4random_uniform(2);
 }
 
