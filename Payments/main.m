@@ -7,11 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "general_defines.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+
+        
+        double price = ((double)arc4random_uniform(100000))/100.00;
+        
+        NSLog(@"Cost: $%.2f", price);
+        
+        
+        
+        
     }
     return 0;
 }
