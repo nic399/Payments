@@ -10,4 +10,12 @@
 
 @implementation AmazonPaymentService
 
+-(void)processPaymentAmount:(NSInteger)amount{
+    NSLog(@"You should have bought this on Amazon, it would have been cheaper than $%.2ld", amount);
+}
+
+-(BOOL)canProcessPayment{
+    return arc4random_uniform(2);
+}
+
 @end

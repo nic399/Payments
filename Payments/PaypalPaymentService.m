@@ -10,4 +10,12 @@
 
 @implementation PaypalPaymentService
 
+-(void)processPaymentAmount:(NSInteger)amount{
+    NSLog(@"Your Paypal account has been charged $%.2ld", amount);
+}
+
+-(BOOL)canProcessPayment{
+    return arc4random_uniform(2);
+}
+
 @end

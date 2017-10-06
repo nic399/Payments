@@ -10,6 +10,9 @@
 #import "general_defines.h"
 #import "InputCollector.h"
 #import "PaymentGateway.h"
+#import "AmazonPaymentService.h"
+#import "StripePaymentService.h"
+#import "PaypalPaymentService.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -24,7 +27,27 @@ int main(int argc, const char * argv[]) {
         NSLog(@"1: Paypal, 2: Stripe, 3: Amazon");
         NSString *userInput = [myInputCollector inputForPrompt:@">"];
         NSLog(@"%@",userInput);
+        id<PaymentDelegate> myPaymentDelegate;
+        switch ([userInput intValue]) {
+            case 1: {
+                myPaymentDelegate = [[PaypalPaymentService alloc] init];
+                break;
+            }
+               
+            case 2:{
+                myPaymentDelegate = [[StripePaymentService alloc] init];
+                break;
+            }
+                
+            case 3:{
+                myPaymentDelegate = [[AmazonPaymentService alloc] init];
+                break;
+            }
+            default:
+                break;
+        }
         
+        myPaymentGateway.paymentDelegate = myPaymentDelegate;
         [myPaymentGateway processPaymentAmount:price];
 
     }
